@@ -1,0 +1,190 @@
+/*
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+/*FAQs*/
+$(document).ready(function() {
+			    
+	$("#faq_accordion").accordion({ heightStyle: "content",collapsible: true, active:false, create: function( event, ui ) {$('#faq_loading').hide();$('#faq_accordion').show();} });
+	$(".faq_subaccordion").accordion({ heightStyle: "content",collapsible: true, active:false });
+	
+	$('#faq_search').on('change keyup paste click', function () {
+		faqSearch();
+	});
+	
+	$("#faq_btn_next").click(function(){
+		var new_skip_index = parseInt($("#faq_btn_next").attr('data')) + 1;
+		$("#faq_btn_next").attr('data',new_skip_index);
+		faqSearch();
+	});
+	
+});
+
+function faqSearch(){
+	$('.faq_highlight').contents().unwrap();
+	
+	var faq_term = $("#faq_search").val().toLowerCase();
+	var accord_num = 0;
+	var match_found = false;
+	var top_accord_id = 0;
+	var last_top_accord_id = 0;
+	var title = '';
+	var content = '';
+	var skip_count = 0;
+	var skip_index = parseInt($("#faq_btn_next").attr('data'));
+	
+	if (faq_term.length >= 3) {
+		
+		$('.faq_subaccordion h3').each(function() {
+			title = $(this).html().replace(/<[^>]+>/gim, '').toLowerCase();
+
+			if (title.indexOf(faq_term) != -1){
+				
+				top_accord_id = parseInt($(this).parent().attr('id').split("_")[1]);
+				if (last_top_accord_id != top_accord_id) {
+					last_top_accord_id = top_accord_id;
+					accord_num = 0;
+				}
+				
+				if (skip_index != skip_count) {
+					skip_count++;
+				} else {
+					
+					var regex = new RegExp('('+faq_term+')', 'ig');
+					$(this).html($(this).html().replace(regex, '<span class="faq_highlight">$1</span>'));
+					
+					$("#faq_accordion").accordion("option", "active", top_accord_id);
+					$(this).parent().accordion("option", "active", accord_num);
+					match_found = true;
+					return false;
+				}
+			} else {
+				top_accord_id = parseInt($(this).parent().attr('id').split("_")[1]);
+				if (last_top_accord_id != top_accord_id) {
+					last_top_accord_id = top_accord_id;
+					accord_num = 0;
+				}
+				
+				content = $(this).parent().find('>div').html().replace(/<[^>]+>/gim, '').toLowerCase();
+				
+				if (content.indexOf(faq_term) != -1){
+					if (skip_index != skip_count) {
+						skip_count++;
+					} else {
+						var regex = new RegExp('('+faq_term+')', 'ig');
+						$(this).parent().find('>div').html(content.replace(regex, '<span class="faq_highlight">$1</span>'));
+						
+						$("#faq_accordion").accordion("option", "active", top_accord_id);
+						$(this).parent().accordion("option", "active", accord_num);
+						match_found = true;
+						return false;
+					}
+				}
+			}
+			
+			accord_num = accord_num + 1;
+		});
+	}
+	
+	// No match close both accordions
+	if (match_found == false) {
+		$("#faq_accordion").accordion("option", "active", false);
+		$(".faq_subaccordion").accordion("option", "active", false);
+		$("#faq_btn_next").attr('data',0);
+		$("#faq_btn_next").hide();
+	} else {
+		$("#faq_btn_next").show();
+	}
+}
+
+/*MAIN*/
+(function($) {
+
+	var	$window = $(window),
+		$body = $('body'),
+		$menu = $('#menu'),
+		$sidebar = $('#sidebar'),
+		$main = $('#main');
+
+	// Breakpoints.
+		breakpoints({
+			xlarge:   [ '1281px',  '1680px' ],
+			large:    [ '981px',   '1280px' ],
+			medium:   [ '737px',   '980px'  ],
+			small:    [ '481px',   '736px'  ],
+			xsmall:   [ null,      '480px'  ]
+		});
+
+	// Play initial animations on page load.
+		$window.on('load', function() {
+			window.setTimeout(function() {
+				$body.removeClass('is-preload');
+			}, 100);
+		});
+
+	// Menu.
+		$menu
+			.appendTo($body)
+			.panel({
+				delay: 500,
+				hideOnClick: true,
+				hideOnSwipe: true,
+				resetScroll: true,
+				resetForms: true,
+				side: 'right',
+				target: $body,
+				visibleClass: 'is-menu-visible'
+			});
+
+	// Search (header).
+		var $search = $('#search'),
+			$search_input = $search.find('input');
+
+		$body
+			.on('click', '[href="#search"]', function(event) {
+
+				event.preventDefault();
+
+				// Not visible?
+					if (!$search.hasClass('visible')) {
+
+						// Reset form.
+							$search[0].reset();
+
+						// Show.
+							$search.addClass('visible');
+
+						// Focus input.
+							$search_input.focus();
+
+					}
+
+			});
+
+		$search_input
+			.on('keydown', function(event) {
+
+				if (event.keyCode == 27)
+					$search_input.blur();
+
+			})
+			.on('blur', function() {
+				window.setTimeout(function() {
+					$search.removeClass('visible');
+				}, 100);
+			});
+
+	// Intro.
+		var $intro = $('#intro');
+
+		// Move to main on <=large, back to sidebar on >large.
+			breakpoints.on('<=large', function() {
+				$intro.prependTo($main);
+			});
+
+			breakpoints.on('>large', function() {
+				$intro.prependTo($sidebar);
+			});
+
+})(jQuery);

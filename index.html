@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html><head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Calculadora | Construcción Civil | I.T.I."B.B".</title>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		
+		<link rel="stylesheet" href="./Calculadora _ Asistencia _ Grupo Sur_files/bootstrap.min.css">
+		<link rel="stylesheet" href="./Calculadora _ Asistencia _ Grupo Sur_files/main.css">	
+		<link rel="stylesheet" href="./Calculadora _ Asistencia _ Grupo Sur_files/jquery.modal.min.css">
+		<link rel="stylesheet" href="./Calculadora _ Asistencia _ Grupo Sur_files/jquery-ui.css">
+		
+		
+
+		<script type="text/javascript" async="" src="./Calculadora _ Asistencia _ Grupo Sur_files/analytics.js.descarga"></script><script src="./Calculadora _ Asistencia _ Grupo Sur_files/jquery.min.js.descarga"></script>
+		<script src="./Calculadora _ Asistencia _ Grupo Sur_files/jquery.min.js(1).descarga"></script>
+		<script src="./Calculadora _ Asistencia _ Grupo Sur_files/jquery-ui.min.js.descarga"></script>							
+		<script src="./Calculadora _ Asistencia _ Grupo Sur_files/jquery.modal.min.js.descarga"></script>		
+		<script src="./Calculadora _ Asistencia _ Grupo Sur_files/bootstrap.min.js.descarga"></script>
+		<script src="./Calculadora _ Asistencia _ Grupo Sur_files/1.js.descarga"></script>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async="" src="./Calculadora _ Asistencia _ Grupo Sur_files/js"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			
+			gtag('config', 'UA-93010666-1');
+		</script>	
+
+		<style>
+			a {position: relative;}
+				
+			img {
+				position: absolute;
+				top: 10%;
+				left: 100%;
+				display: none;
+				}
+				
+			a:hover img {display: block;}
+		</style>
+		
+	</head>
+
+
+	<body class="single">
+
+		<div style="background-color:goldenrod; height:10px;"></div>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					
+					
+				</header>
+
+				<!-- Menu -->
+					
+
+				<!-- Main -->
+					<div id="main">
+						<div class="row">
+							<t>
+									</t><table>
+								<tbody><tr>
+									<td colspan="3" style="text-align: center;"><h2>CALCULADORA DE PINTURA</h2></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><h3>Valores requeridos</h3></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Área total a cubrir (m²)</td>
+									<td><input id="area" type="number" pattern="^\d*(\.\d{0,2})?$" placeholder="0.0" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Se debe obtener el área que desea recubrir con pintura e insertarlo en metros cuadrados (m²)."></td>
+									<td></td>
+								</tr>
+								<tr>
+										<td>Seleccione un producto</td>
+										<td><select id="sEfficiency" onchange="myEfficiency()" style="max-width:250px;">
+												<option value="45">Coral Rinde Mucho</option>
+												<option value="55">Monopol Latex Ideal</option>
+												<option value="55">Monopol Latex Tradicional</option>
+												<option value="40">Eurocolor Latex Color</option>
+												<option value="40">Sinteplast King</option>
+												<option value="40">Sinteplast Acriplast</option>
+												<option value="35">Pinturas Caracol Dual</option>
+												<option value="35">Ribepar Arcoiris Latex</option>
+												<option value="35">Ribepar Ribelatex</option>
+												<option value="35">Coral Coral Duo</option>
+												<option value="33">Coral Coralar</option>
+												<option value="30">Pinturas Caracol Murex</option>
+												<option value="30">Vence Látex Latex acrilico</option>
+												<option value="30">Latex Éxito Latex</option>
+												<option value="27">Porbor Látex</option>
+												<option value="27">Mundi Color</option>
+												<option value="26">Continental Látex ecológico</option>
+												<option value="26">Continental Látex Pintor</option>											
+											</select>
+										</td>	
+
+										<td>	
+											Eficiencia (ɛ): <input id="eff" type="number" min="0" max="1" onkeyup="if(this.value &gt; 1) this.value = null;" value="0.00" pattern="^\d*(\.\d{0,2})?$" placeholder="0.0" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Este es el valor de eficiencia según la pintura seleccionada. Si conoce el valor específico de la eficiencia dígitelo acá.">										
+										</td>
+									</tr>
+
+									<tr>
+										<td>Elija el tipo de superficie</td>
+										<td><select id="Superficie" onchange="mySuperficie()" style="max-width:250px;">
+												<option value="1">Liso</option>
+												<option value="1.15">Rugosidad Baja</option>
+												<option value="1.26">Rugosidad Media</option>	
+												<option value="1.46">Rugosidad Alta</option>
+																		
+											</select>
+										</td>
+										<td>	
+											Superficie (s): <input id="sup" type="number" min="0" max="1" onkeyup="if(this.value &gt; 1) this.value = null;" value="0.00" pattern="^\d*(\.\d{0,2})?$" placeholder="0.0" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Este es el valor de eficiencia según la rugosidad seleccionada. Si conoce el valor específico de la eficiencia dígitelo acá.">										
+										</td>
+									</tr>	
+
+									<tr>
+										<td>Elija el tipo de color</td>
+										<td><select id="Color" onchange="myColor()" style="max-width:250px;">
+												<option value="70">Pintado de pared_nueva con un color claro</option> 
+							                    <option value="100">Pintado de pared nueva con un color oscuro</option>
+							                    <option value="35">Repintado con el mismo color</option>
+							                    <option value="35">Repintado sobre color claro</option>
+							                    <option value="100">Repintado sobre color oscuro</option>
+																		
+											</select>
+										</td>
+										<td>	
+											Color (c): <input id="col" type="number" min="0" max="1" onkeyup="if(this.value &gt; 1) this.value = null;" value="0.00" pattern="^\d*(\.\d{0,2})?$" placeholder="0.0" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Este es el valor de eficiencia según el pintado seleccionado. Si conoce el valor específico de la eficiencia dígitelo acá.">										
+										</td>
+									</tr>	
+
+									<tr>
+										<td>Elija el metodo de aplicación</td>
+										<td><select id="Aplicacion" onchange="myAplicacion()" style="max-width:250px;">
+												<option value="0.9">Rodillo o brocha</option> 
+							                    <option value="0.85">Arless</option>
+							                    <option value="0.8">Soplete</option>
+																		
+											</select>
+										</td>
+										<td>	
+											Aplicacion (a): <input id="apl" type="number" min="0" max="1" onkeyup="if(this.value &gt; 1) this.value = null;" value="0.00" pattern="^\d*(\.\d{0,2})?$" placeholder="0.0" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Este es el valor de eficiencia según el método de aplicación seleccionado. Si conoce el valor específico de la eficiencia dígitelo acá.">										
+										</td>
+									</tr>	
+									<tr>
+										<td>Elija el metodo de material</td>
+										<td><select id="Aplicacion" onchange="myAplicacion()" style="max-width:250px;">
+												<option value="1">Revoque de Yeso</option> 
+                    							<option value="1">Revoque de Hormigon</option>>
+																		
+											</select>
+										</td>
+										
+									</tr>
+								
+							
+								<tr>
+									<td><button id="calculator" style="font-size:14px">Calcular <i class="fa fa-calculator"></i></button></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>									
+									<td><strong>Cantidad de pintura (litros):</strong></td>
+									<td><input id="result" pattern="^\d*(\.\d{0,2})?$" readonly="" placeholder="0.0"></td>
+									<td></td>
+								</tr>
+								<tr>									
+									<td><strong>Cantidad de agua para Brocha (litros):</strong></td>
+									<td><input id="result1" pattern="^\d*(\.\d{0,2})?$" readonly="" placeholder="0.0"></td>
+									<td><strong>Cantidad de agua para Arless ó Soplete (litros):</strong></td>
+									<td><input id="result2" pattern="^\d*(\.\d{0,2})?$" readonly="" placeholder="0.0"></td>
+									<td></td>
+									
+								</tr>
+								<tr><td colspan="3">
+										<p style="font-size:smaller;">El rendimiento real de una pintura se encuentra sujeto a diversas variables presentes en la aplicación, como la pericia de los aplicadores, las herramientas utilizadas, la rugosidad del sustrato, absorción de las superficies de aplicación y otras, factores difíciles de evaluar una vez hecho el trabajo. Por lo tanto, Erick Alvaro Mollisaca Quispe y el I.T.I."B.B.", no hace ninguna promesa de rendimiento ni recibirá reclamos por el rendimiento o resultados distintos obtenidos en una obra específica. El rendimiento real que usted obtenga en su aplicación puede ser muy diferente a los dados por la calculadora de pintura, los cuales fueron obtenidos por valores ingresados por el usuario.</p>
+									</td>
+								
+							</tr></tbody></table>
+						</div>
+						<div class="row">
+	
+		<!-- Scripts -->
+			<script src="./Calculadora _ Asistencia _ Grupo Sur_files/browser.min.js.descarga"></script>
+			<script src="./Calculadora _ Asistencia _ Grupo Sur_files/breakpoints.min.js.descarga"></script>
+			<script src="./Calculadora _ Asistencia _ Grupo Sur_files/util.js.descarga"></script>
+			<script src="./Calculadora _ Asistencia _ Grupo Sur_files/main.js.descarga"></script><section id="menu">
+							<section>
+								<ul class="links">
+									<li>
+										<a href="http://www.gruposur.com/" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+											<h3>Grupo Sur</h3>
+											<p>Sitio Corporativo</p>
+										</a>
+									</li>
+									<li>
+										<a href="http://surcolor.com/" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+											<h3>Sur Color</h3>
+											<p>Sitio sobre nuestras tiendas</p>
+										</a>
+									</li>
+									<li>
+										<a href="http://www.gruposur.com/web/resp-corporativa/" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+											<h3>Responsabilidad Corporativa</h3>
+											<p>Sitio Responsabilidad corporativa</p>
+										</a>
+									</li>									
+								</ul>
+							</section>
+					</section>	
+			<script>
+				$( "#calculator" ).click(function() {
+						var area = $('#area').val();
+						var sup = $('#sup').val();
+						var eff = $('#eff').val();
+						var col = $('#col').val();
+						var apl = $('#apl').val();
+						var agu = $('#apl').val();
+						
+						
+						var num2 = (area*sup);
+						var num3 = (eff*10)/col;
+						var num4 = num3*apl
+						var num1 = (num2/num4);
+						var num5 = ((eff-11)*num1)/100;
+						var num6 = num5*2;
+						
+						
+						$("#result").val(num1.toFixed(2));
+						$("#result1").val(num5.toFixed(2));
+						$("#result2").val(num6.toFixed(2));
+						
+				});
+
+
+			</script>
+			<script>
+				function myEfficiency() {
+				  var x = document.getElementById("sEfficiency").value;
+				  document.getElementById("eff").value = x;
+				}
+				function mySuperficie() {
+				  var x = document.getElementById("Superficie").value;
+				  document.getElementById("sup").value = x;
+				}
+				function myColor() {
+				  var x = document.getElementById("Color").value;
+				  document.getElementById("col").value = x;
+				}
+				function myAplicacion() {
+				  var x = document.getElementById("Aplicacion").value;
+				  document.getElementById("apl").value = x;
+				}
+				function myAgua() {
+				  var x = document.getElementById("Agua").value;
+				  document.getElementById("agu").value = x;
+				}
+
+
+				function search() {
+				  var x = document.getElementById("searchHT").value;
+				  window.open("https://www.gruposur.com/web/?s=" + x + "&post_type=post");
+				}
+			</script>
+			<script>
+				$(document).ready(function(){
+				  $('[data-toggle="tooltip"]').tooltip();   
+				});
+			</script>
+	
+<div id="imageDownloaderSidebarContainer"><div class="image-downloader-ext-container"><div tabindex="-1" class="b-sidebar-outer"><!----><div id="image-downloader-sidebar" tabindex="-1" role="dialog" aria-modal="false" aria-hidden="true" class="b-sidebar shadow b-sidebar-right bg-light text-dark" style="width: 500px; display: none;"><!----><div class="b-sidebar-body"><div></div></div><!----></div><!----><!----></div></div></div></body></html>
